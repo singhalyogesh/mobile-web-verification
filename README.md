@@ -60,7 +60,7 @@ POST
 **Initiate User Authorization**  
 ```bash
 curl -X POST -H "Content-Type: application/json" -H "appKey: Js9t3518a9eb2b6804160957f7b438dcc01ac" -H "Cache-Control: no-cache" -d '{
-  "phoneNumber": 46760369715
+  "phoneNumber": 46760123456
 }' "https://api4.truecaller.com/v1/apps/requests"
 ```
 
