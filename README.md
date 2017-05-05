@@ -2,7 +2,7 @@
 
 ## Preconditions
 
-- You have a web application that allow users to sing up/sign in to use your services
+- You have a web application that allow users to sign up/sign in to use your services
 - You have identified the benefits that Truecaller can provide you, by allowing your users one click sign up with their Truecaller profile
 - You have set up a callback endpoint, that we will use to post the access token, once the user has approved your app to use their Truecaller profile
 - This documentation to efficiently pass through all the steps of the process.
