@@ -2,7 +2,7 @@
 
 ## Preconditions
 
-- You have a web application that allow users to sing up/sign in to use your services
+- You have a web application that allow users to sign up/sign in to use your services
 - You have identified the benefits that Truecaller can provide you, by allowing your users one click sign up with their Truecaller profile
 - You have set up a callback endpoint, that we will use to post the access token, once the user has approved your app to use their Truecaller profile
 - This documentation to efficiently pass through all the steps of the process.
@@ -116,11 +116,11 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
   "last": "last_name_field_value",
  },
  "aboutMe": "status_message_field_value",
- "phoneNumbers": [46795087665],
+ "phoneNumbers": [467601234567],
  "onlineIdentity": {
   "facebookId": "facebook_id_field_value",
   "twitterId": "twitter_id_field_value",
-  "email": "miroznak@yandex.ru",
+  "email": "mail@gmail.com",
   "url": "url_field_value"
  },
  "companyName": "w_company_name_field_value",
