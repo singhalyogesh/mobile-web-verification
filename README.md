@@ -84,6 +84,7 @@ You can use this requestID to match it against an access token you'll get and co
 
 In case of failed request, the response codes in return are:
 
+- 403 Forbidden - **means the SDK login can't be used for that number (non-existing account)**
 - 404 Not Found - **means your credentials (appKey) are not valid.**
 - 5xx Server error - **any other error**
 
