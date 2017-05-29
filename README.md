@@ -85,7 +85,17 @@ You can use this requestID to match it against an access token you'll get and co
 In case of failed request, the response codes in return are:
 
 - 403 Forbidden - **means the SDK login can't be used for that number (non-existing account)**
+  {
+  "code": 1008,
+  "message": "Forbidden: It is forbidden to use sdk login for this phone number."
+  }
+  
 - 404 Not Found - **means your credentials (appKey) are not valid.**
+  {
+  "code": 404,
+  "message": "Invalid partner credentials."
+  }
+
 - 5xx Server error - **any other error**
 
 Note: Once the user triggers the authorization from your app, it would be good to lock the behavior for a certain period of time (5 mins). The reason is to prevent multiple unnecessary requests in a short period of time towards our platform, and allowing proper completion of the cycle (request authorization, authorize by the user, fetch profile).
