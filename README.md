@@ -159,10 +159,10 @@ The CallbackURL should correspond to an endpoint where we will post the access t
 When setting up the service, please consider the following:
 
 **Method:**  
-All access token requests will be submitted as POST request
+All access token requests will be submitted as POST request. Make sure your service is async, since we only expect that the message is accepted from your side. The service should respond within maximum 3 seconds upon receiving the request.
 
 **Security:**  
-To ensure security and privacy, HTTPS should be used.
+To ensure security and privacy, HTTPS should be used. Make sure your certificate is always valid.
 
 **Request Params:**
 
@@ -174,5 +174,4 @@ To ensure security and privacy, HTTPS should be used.
 
 **Expected Response Codes:**
 
-- 200 OK
-- 500 - any other error type that will retrigger retry on our side
+- 2** OK
