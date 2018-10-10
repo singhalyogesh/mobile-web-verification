@@ -1,8 +1,8 @@
-# Truecaller Sign Up for Web Apps
+# Truecaller Sign Up for Mobile Web
 
 ## Preconditions
 
-- You have a web application that allow users to sign up/sign in to use your services
+- You have a mobile web application that allow users to sign up/sign in to use your services
 - You have identified the benefits that Truecaller can provide you, by allowing your users one click sign up with their Truecaller profile
 - You have set up a callback endpoint, that we will use to post the access token, once the user has approved your app to use their Truecaller profile
 - This documentation to efficiently pass through all the steps of the process.
@@ -23,82 +23,14 @@ To ensure the authenticity of the interactions between your app and Truecaller, 
 
 Once we've got the info about your account and your app, we will provide you with a unique "appKey" for that application.
 
-## So How Can Truecaller Users Sign Up Quickly to Your App?
-
-This is how it looks in a glance:
-
-![Diagram](https://raw.githubusercontent.com/truecaller/web-login/master/documentation/images/diagram.png)
-
-But let's get down to the details.
-
 
 ### Ask for User's Number
 
-When using Truecaller Sign Up, the only thing the user will need to insert in your app, is their phone number (e164 phone number format without the "+" sign). You can apply a basic validation to the number to ensure maximum success of the request (ex. use open source library such as the google libphonenumber, or if your users are located in one country only, just use the validation rules for mobile numbers for that country (just contact us and we'll provide you with all the input you need).
+Embed the following deep link in your user flow -
 
-Once the user has inserted their number, your backend services should trigger the following request to our API:
+"truecaller://truesdk/web_verify?requestNonce=123456&partnerKey=HHSZk08ff1436808f491e8ae49e60a842721d&partnerName=mWebDemo"
 
-**Endpoint:**  
-https://api4.truecaller.com/v1/apps/requests
-
-**Method:**  
-POST
-
-**Header parameters:**
-
-| **Parameter [Type]** | **Required** | **Description**         | **Example**                  |
-| -------------------  | ------------ | ----------------------- | ---------------------------- |
-| appKey [String]      | yes          | Applications secret key | 9493249349-0944994595odmdnri |
-
-**Body parameters:**
-
-| **Parameter [Type]** | **Required** | **Description**                                                     | **Example**              |
-| -------------------  | ------------ | ------------------------------------------------------------------- | ------------------------ |
-| phoneNumber [Long]   | yes          | User's phone number                                                 | 46761234567              |
-| state [String]       | no           | Optional parameter that will be send back to partner's callbak url. | ne4_cRtzx73-alui_XDvzS5h |
-
-**Initiate User Authorization**  
-```bash
-curl -X POST -H "Content-Type: application/json" -H "appKey: Js9t3518a9eb2b6804160957f7b438dcc01ac" -H "Cache-Control: no-cache" -d '{
-  "phoneNumber": 46760123456
-}' "https://api4.truecaller.com/v1/apps/requests"
-```
-
-The **"state"** param is an optional param that you might wanna generate as a session id, once the user triggers the authorization with Truecaller. The same param will be routed back to you along with the access token to your callback endpoint, which will help you complete the session.
-
-Alternatively, you can create and keep a server-side session, using the **requestId** you get in the response.
-
-**Response**
-
-A successful request (200 response code), means your request is accepted and we'll ask the holder of the number to approve signing up with his Truecaller profile.
-
-In the response, you'll get the corresponding requestID back.
-
-```json
-{
-  "requestId": "92849748hueh9"
-}
-```
-
-You can use this requestID to match it against an access token you'll get and complete the user sign up.
-
-In case of failed request, the response codes in return are:
-
-- 403 Forbidden - **means the SDK login can't be used for that number (non-existing account)**
-  {
-  "code": 1008,
-  "message": "Forbidden: It is forbidden to use sdk login for this phone number."
-  }
-  
-- 404 Not Found - **means your credentials (appKey) are not valid.**
-  {
-  "code": 404,
-  "message": "Invalid partner credentials."
-  }
-
-- 5xx Server error - **any other error**
-
-Note: Once the user triggers the authorization from your app, it would be good to lock the behavior for a certain period of time (5 mins). The reason is to prevent multiple unnecessary requests in a short period of time towards our platform, and allowing proper completion of the cycle (request authorization, authorize by the user, fetch profile).
+Replace the partner key with actual value
 
 ### Fetch User Profile
 
