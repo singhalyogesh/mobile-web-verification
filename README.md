@@ -1,17 +1,17 @@
-# Truecaller Sign Up for Mobile Web
+# Truecaller SDK verification for Mobile Web
 
 ## Preconditions
 
-- You have a mobile web application that allow users to sign up/sign in to use your services
-- You have identified the benefits that Truecaller can provide you, by allowing your users one click sign up with their Truecaller profile
-- You have set up a callback endpoint, that we will use to post the access token, once the user has approved your app to use their Truecaller profile
+- You have a mobile web application that allow users to sign up /sign in / verify using mobile number to use your services
+- You have identified the benefits that Truecaller can provide you, by allowing your users one click sign up / verification / checkout using their already verified Truecaller profile
+- You have set up a callback endpoint on your server, that we will use to post the access token, once the user has approved your app to use their Truecaller verified profile
 - This documentation to efficiently pass through all the steps of the process.
 
 ## Get started
 
 ### Already a Truecaller Developer?
 
-- Login to your account to create a new app. Add your App Name and the Callback URL, where we'll post your access token. Make sure you follow the [guidelines for the CallbackURL](#guidelines-for-the-callbackurl).
+- Login to your account to create a new app. Add your App Name and the Callback URL, where we'll post your access token. Make sure you follow the [guidelines for the Callback URL](#guidelines-for-the-callbackurl).
 - Once we've got the info about your account and your app, we will provide you with a unique "appKey" for that application. You'll use this key in the header, for us to be able to authorize your requests.
 
 ### New to Truecaller Devs?
@@ -19,11 +19,11 @@
 To ensure the authenticity of the interactions between your app and Truecaller, you need to sign up for an account and add the information about your application.
 
 - Add your email, password, and personal info to create the account. These will be your credentials to login to your Truecaller Developer account.
-- Now add your Application. Insert your App Name, your App Domain and the Callback URL, where we'll post the access tokens. Make sure you follow the [guidelines for the CallbackURL](#guidelines-for-the-callbackurl).
+- Now add your Application. Insert your App Name, your App Domain and the Callback URL, where we'll post the access tokens. Make sure you follow the [guidelines for the Callback URL](#guidelines-for-the-callbackurl).
 
 Once we've got the info about your account and your app, we will provide you with a unique "appKey" for that application.
 
-## So How Can Truecaller Users Sign Up Quickly to Your App?
+## So how can Truecaller users verify quickly on your mobile web app?
 
 This is how it looks in a glance:
 
@@ -31,13 +31,14 @@ This is how it looks in a glance:
 
 But let's get down to the details.
 
-### Ask for User's Number
+### Initiate the user verification flow
 
-Embed the following deep link in your user flow -
+To initiate the user verification, you need to trigger a deep link in the format mentioned below. You can initiate the user verification at multiple touch points in your user flow journey ( for exmple - login, registration, checkout, verification etc. )
 
-"truecaller://truesdk/web_verify?requestNonce=123456&partnerKey=HHSZk08ff1436808f491e8ae49e60a842721d&partnerName=mWebDemo"
+"truecaller://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_APP_KEY&partnerName=YOUR_APP_NAME"
 
-Replace the partner key with actual value
+Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent.
+Add the partner key which you generated from your developer portal account, and the app name that you want users to see in the truecaller profile dialog.
 
 ### Fetch User Profile
 
@@ -57,7 +58,7 @@ https://profile4.truecaller.com/v1/default
 curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0JQSODp6niW8oBr33uOI-u7" -H "Cache-Control: no-cache" "https://profile4.truecaller.com/v1/default"
 ```
 
-**Response**
+**Sample User Profile Response**
 
 ```json
 {
@@ -91,9 +92,9 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
 - 401 Unauthorized - **If your credentials are not valid**
 - 5xx Server error - **Any other error**
 
-## Guidelines for the CallbackURL
+## Guidelines for the Callback URL
 
-The CallbackURL should correspond to an endpoint where we will post the access token for you to fetch the user's profile. Every access token can be used to fetch the profile only of the related user granting the authorization to your app. The access token has a time-to-live (10 minutes) and if not used within the TTL, the user needs to re-trigger the authorization process from the beginning.
+The Callback URL should correspond to an endpoint where we will post the access token for you to fetch the user's profile. Every access token can be used to fetch the profile only of the related user granting the authorization to your app. The access token has a time-to-live (10 minutes) and if not used within the TTL, the user needs to re-trigger the authorization process from the beginning.
 
 When setting up the service, please consider the following:
 
