@@ -23,6 +23,13 @@ To ensure the authenticity of the interactions between your app and Truecaller, 
 
 Once we've got the info about your account and your app, we will provide you with a unique "appKey" for that application.
 
+## So How Can Truecaller Users Sign Up Quickly to Your App?
+
+This is how it looks in a glance:
+
+![Diagram](https://github.com/singhalyogesh/web-login/blob/master/documentation/images/mweb-flow.png)
+
+But let's get down to the details.
 
 ### Ask for User's Number
 
