@@ -48,7 +48,7 @@ Please note that in case Truecaller app is not present on the user's device, the
 <a href="truecaller://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_PARTNER_KEY&partnerName=YOUR_APP_NAME" target="_blank">
 ```
 
-This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will open. Using javascript, add an event lisetenner for a new window and just close the window after a certain timeout ( few milliseconds ).
+This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will open. Using javascript, add an event listenner for a new window and just close the window after a certain timeout ( few milliseconds ).
  
 
 ### Fetch User Profile
