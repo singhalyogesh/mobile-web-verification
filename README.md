@@ -40,12 +40,23 @@ To initiate the user verification, you need to trigger a deep link in the format
 Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent.
 Add the partner key which you generated from your developer portal account, and the app name that you want users to see in the truecaller profile dialog.
 
+Please note that in case Truecaller app is not present on the user's device, the deep link won't trigger anything. To effectively handle this case, you should use the deep link as an 'href' link, and open the link by setting the targer as 'blank'. Please refer below example -
+
+<a href="truecaller://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_PARTNER_KEY&partnerName=YOUR_APP_NAME" target="_blank">
+
+This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will open. Using javascript, add an event lisetenner for a new window and just close the window after a certain timeout ( few milliseconds ).
+ 
+
 ### Fetch User Profile
 
-Once the user approves the sign up to your app with their Truecaller profile, we'll immediately post the accessToken and the requestID to your Callback endpoint. To be able to fetch the user's profile information you should use the following endpoint.
+Once the user approves the sign up to your app with their Truecaller profile, we'll immediately post the accessToken and the requestID to your Callback endpoint. The sample response format would look like below -
+
+{"requestId":"RL8YZ41FQMt5Jiak2sc_Ys0OgQA=","accessToken":"a1asX--8_yw-OF--E6Gj_DPyKelJIGUUeYB9U9MJhyeu4hOCbrl","endpoint":"https://profile4-noneu.truecaller.com/v1/default"}
+
+To be able to fetch the user's profile information you should use the following endpoint.
 
 **Endpoint:**  
-https://profile4.truecaller.com/v1/default
+Use the endpoint that you receive in the above response ( once the user shares his truecaller profile ) to fetch the user profile.
 
 **Header Authorization Parameters:**  
 
@@ -55,7 +66,7 @@ https://profile4.truecaller.com/v1/default
 
 **Get User Profile**  
 ```bash
-curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0JQSODp6niW8oBr33uOI-u7" -H "Cache-Control: no-cache" "https://profile4.truecaller.com/v1/default"
+curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0JQSODp6niW8oBr33uOI-u7" -H "Cache-Control: no-cache" "https://profile4-noneu.truecaller.com/v1/default"
 ```
 
 **Sample User Profile Response**
@@ -91,6 +102,11 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
 - 200 OK
 - 401 Unauthorized - **If your credentials are not valid**
 - 5xx Server error - **Any other error**
+
+Please note, in case the user doesn't shares his truecaller profile ( user dismissed the profile dialog by pressing the back button ), you'll receive a user reject error response on your callback endpoint. The sample format for the same would look as below -
+
+{"requestId":"WZqlS6PqY0ycO3mKlEuI=","status":"user_rejected"}
+
 
 ## Guidelines for the Callback URL
 
