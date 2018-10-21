@@ -103,7 +103,7 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
       "updateTime": "1508089888000"
     }
   }, 
-  "isActive": True, 
+  "isActive": "True", 
   "gender": "Male", 
   "createdTime": "1379314068000", 
   "onlineIdentities": {
