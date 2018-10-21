@@ -42,7 +42,7 @@ To initiate the user verification, you need to trigger a deep link in the format
 Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent.
 Add the partner key which you generated from your developer portal account, and the app name that you want users to see in the truecaller profile dialog.
 
-Please note that in case Truecaller app is not present on the user's device, the deep link won't trigger anything. To effectively handle this case, you should use the deep link as an 'href' link, and open the link by setting the targer as 'blank'. Please refer below example -
+Please note that in case Truecaller app is not present on the user's device, the deep link won't trigger anything. To effectively handle this case, you should use the deep link in a new window. Please refer below example -
 
 ```java
 
@@ -53,7 +53,7 @@ setTimeout(function(){
 },100)
 ```
 
-This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will open. Using javascript timeout function, you can immediately close the window after a certain timeout ( say 100 milliseconds ) and redirect the user to your alternate OTP flow.
+This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will stay. Using javascript timeout function, you can immediately close the window after a certain timeout ( say 100 milliseconds ) and redirect the user to your alternate OTP flow.
  
 
 ### Fetch User Profile
