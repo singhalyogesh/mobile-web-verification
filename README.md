@@ -84,8 +84,8 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
 
 ```json
 {
-  'phoneNumbers': ['919999999999'],
-  'addresses': [
+  "phoneNumbers": ["919999999999"],
+  "addresses": [
     {
        "countryCode": "in",
        "city": "city_field_value",
@@ -93,31 +93,31 @@ curl -X GET -H "Authorization: Bearer a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0
        "zipcode": "1234567"
     }
   ], 
-  'avatarUrl': 'https://s3-eu-west-1.amazonaws.com/images1.truecaller.com/myview/1/15a999e9806gh73834c87aaa0498020d/3', 
-  'aboutMe':'About me',
-  'jobTitle': 'CEO', 
-  'companyName': 'ABC',  
-  'history': {
-    'name': 
+  "avatarUrl": "https://s3-eu-west-1.amazonaws.com/images1.truecaller.com/myview/1/15a999e9806gh73834c87aaa0498020d/3", 
+  "aboutMe":"About me",
+  "jobTitle": "CEO", 
+  "companyName": "ABC",  
+  "history": {
+    "name": 
     {
-      'updateTime': '1508089888000'
+      "updateTime": "1508089888000"
     }
   }, 
-  'isActive': True, 
-  'gender': 'Male', 
-  'createdTime': '1379314068000', 
-  'onlineIdentities': {
-    'url': 'https://www.truecaller.com', 
-    'email': 'y.s@truecaller.com',
-    'facebookId':'1050566252',
+  "isActive": True, 
+  "gender": "Male", 
+  "createdTime": "1379314068000", 
+  "onlineIdentities": {
+    "url": "https://www.truecaller.com", 
+    "email": "y.s@truecaller.com",
+    "facebookId":"105056625245",
   }, 
-  'type': 'Personal', 
-  'id': '655574719', 
-  'userId':1319413476,
-  'badges': ['verified', 'premium'], 
-  'name': {
-    'last': 'Kapoor', 
-    'first': 'Rajat'
+  "type": "Personal", 
+  "id": "655574719", 
+  "userId":"1319413476",
+  "badges": ["verified", "premium"], 
+  "name": {
+    "last": "Kapoor", 
+    "first": "Rajat"
   }
 }
 ```
