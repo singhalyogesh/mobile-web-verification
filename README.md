@@ -27,7 +27,7 @@ Once we've got the info about your account and your app, we will provide you wit
 
 This is how it looks in a glance:
 
-![Diagram](https://github.com/singhalyogesh/mobile-web-verification/blob/master/documentation/images/mweb%20doc%20flow.png)
+![Diagram](https://github.com/singhalyogesh/mobile-web-verification/blob/master/documentation/images/mweb%20doc%20flow%20(1).png)
 
 But let's get down to the details.
 
