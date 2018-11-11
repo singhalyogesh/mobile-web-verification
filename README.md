@@ -36,21 +36,56 @@ But let's get down to the details.
 To initiate the user verification, you need to trigger a deep link in the format mentioned below. You can initiate the user verification at multiple touch points in your user flow journey ( for exmple - login, registration, checkout, verification etc. )
 
 ```java
-"truecallersdk://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_APP_KEY&partnerName=YOUR_APP_NAME"
+"truecallersdk://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_APP_KEY&partnerName=YOUR_APP_NAME&lang=LANGUAGE_LOCALE&title=TITLE_STRING_OPTION"
 ```
 
 Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent.
 Add the partner key which you generated from your developer portal account, and the app name that you want users to see in the truecaller profile dialog.
+The language locale needs to be the locale string corresponding to the language that you wish the user to see the profile dialog in ( For example - 'en' for English ). Currently supported languages include -
 
+     - English
+     - Hindi
+     - Bhojpuri
+     - Rajasthani
+     - Haryanvi
+     - Marathi
+     - Telugu
+     - Malayalam
+     - Gujarati
+     - Punjabi
+     - Tamil
+     - Bengali
+     - Kannada
+     - Odia
+     - Assamese
+     
+
+Similarly, the title string option can be any one of the following parameters depending on what contextual title string you want to show to the user -
+
+     - logIn
+     - signUp
+     - signIn
+     - verify
+     - register
+     - getStarted
+     
 Please note that in case Truecaller app is not present on the user's device, the deep link won't trigger anything. To effectively handle this case, you should use the deep link in a new window. Please refer below example -
 
 ```java
 
-var wnd = window.open("truecallersdk://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_PARTNER_KEY&partnerName=YOUR_APP_NAME");
+var wnd = window.open("truecallersdk://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_PARTNER_KEY&partnerName=YOUR_APP_NAME&lang=LANGUAGE_LOCALE&title=TITLE_STRING_OPTION");
 
 setTimeout(function(){
- wnd.close();
-},100)
+  if(wnd.location.href === 'about:blank'){
+     // Truecaller app not present on the device and you redirect the user 
+     // to your alternate verification page
+     wnd.close();
+ }else{
+   // Truecaller app present on the device and the profile overlay opens
+   // The user clicks on verify and you'll receive the user's access token to fetch the profile on 
+   // your callback URL - post which, you can refresh the session at your frontend and complete the user verification
+ }
+},200)
 ```
 
 This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will stay. Using javascript timeout function, you can immediately close the window after a certain timeout ( say 100 milliseconds ) and redirect the user to your alternate OTP flow.
