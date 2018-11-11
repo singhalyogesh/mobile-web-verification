@@ -88,7 +88,7 @@ setTimeout(function(){
 },200)
 ```
 
-This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will stay. Using javascript timeout function, you can immediately close the window after a certain timeout ( say 100 milliseconds ) and redirect the user to your alternate OTP flow.
+This would open the deeplink in a new window, and open the user's Truecaller profile if the app is present on the device. And in case the app is not present, then the new blank window will stay. Using javascript timeout function, you can immediately close the window after a certain timeout ( say 200 milliseconds, so that JS can appropriately detect in case the overlay opened or the blank window, by using the code snippet as above ) and redirect the user to your alternate OTP flow.
  
 
 ### Fetch User Profile
