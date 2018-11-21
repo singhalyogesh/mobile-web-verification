@@ -187,7 +187,6 @@ To ensure security and privacy, HTTPS should be used. Make sure your certificate
 | -------------------- | ------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
 | requestId [String]   | yes           |                                                                                      | vXbyFPwqiCAHZyxAldA9M9DDXKk=                                      |
 | accessToken [String] | yes           |                                                                                      | a3sAB0KnGANg4VZwIXfhUyFmPbzoONofl4FjIItac0JQSODp6niW8oBr33uOI-u7  |
-| state [String]       | no            | This parameter will exist in json if it is sent in "ask for user's number" endpoint. | ne4_cRtzx73-alui_XDvzS5h                                          |
 
 **Expected Response Codes:**
 
