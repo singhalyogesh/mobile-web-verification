@@ -39,7 +39,7 @@ To initiate the user verification, you need to trigger a deep link in the format
 "truecallersdk://truesdk/web_verify?requestNonce=UNIQUE_REQUEST_ID&partnerKey=YOUR_APP_KEY&partnerName=YOUR_APP_NAME&lang=LANGUAGE_LOCALE&title=TITLE_STRING_OPTION"
 ```
 
-Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent.
+Here, requestNonce should be a unique requestID that you need to associate with every verification request you trigger, so as to do the requisite mapping of the access token which we post to your callback URL once the user shares his / her consent. Please note that the minimun length og the request ID parameter should be 8 characters.
 Add the partner key which you generated from your developer portal account, and the app name that you want users to see in the truecaller profile dialog.
 The language locale needs to be the locale string corresponding to the language that you wish the user to see the profile dialog in ( For example - 'en' for English ). Currently supported languages include -
 
